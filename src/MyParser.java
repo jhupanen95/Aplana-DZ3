@@ -9,7 +9,7 @@ public class MyParser {
         return new String(Files.readAllBytes(Paths.get(fileName)));
     }
 
-    public List<Organization> parse (List<String> orgJson){
+    public List<Organization> parse (List<String> orgJson){ // метод прохидится по всем огранизациям в листе и расставляет данные
         List<Organization> organizations = new ArrayList<>();
 
         for (int i = 0; i < orgJson.size(); i++){
@@ -52,7 +52,7 @@ public class MyParser {
                     .limit(1)
                     .findFirst();
 
-            organizations.get(i).setNameShort(parsString(optional.get())); //установка name_full организации
+            organizations.get(i).setNameShort(parsString(optional.get()));
 
             optional = Arrays.asList(orgJson.get(i).split("\\n"))
                     .stream()
@@ -61,7 +61,7 @@ public class MyParser {
                     .limit(1)
                     .findFirst();
 
-            organizations.get(i).setInn(parsString(optional.get())); //установка name_full организации
+            organizations.get(i).setInn(parsString(optional.get()));
 
             optional = Arrays.asList(orgJson.get(i).split("\\n"))
                     .stream()
@@ -317,7 +317,7 @@ public class MyParser {
         return organizations;
     }
 
-    private static String splitSecuriti(String str){
+    private static String splitSecuriti(String str){ //метод разделяет json на части по документам
         List<String> list = Arrays.asList(str.split("\n"));
 
 
@@ -335,7 +335,7 @@ public class MyParser {
         return securities.toString();
     }
 
-    public List<String> splitOrg(String json){
+    public List<String> splitOrg(String json){ //метод разделяет json на части по организациям
         List<String> list = new ArrayList<>();
         int count = 0;
         StringBuilder org = new StringBuilder("");
@@ -362,7 +362,7 @@ public class MyParser {
         else return false;
     }
 
-    private static int parsInt(String str){
+    private static int parsInt(String str){ //метод выделяет int здачение параметра в строке
 
         StringBuilder newStr = new StringBuilder();
 
@@ -378,7 +378,7 @@ public class MyParser {
         return  Integer.parseInt(newStr.toString());
     }
 
-    private static String parsString(String str){
+    private static String parsString(String str){ //метод выделяет String здачение параметра в json-строке
 
         StringBuilder newStr = new StringBuilder();
         char[] strf = str.toCharArray();

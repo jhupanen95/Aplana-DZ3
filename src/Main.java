@@ -13,8 +13,7 @@ public class Main {
 
         MyParser parser = new MyParser();
 
-
-        String json = readUsingFiles("C:\\Users\\jhupanen\\IdeaProjects\\Aplana\\Aplana-DZ3\\test.json");
+        String json = readUsingFiles(System.getProperty("user.dir") + "\\test.json");
         List<String> orgJson = parser.splitOrg(json); //Список json-ов (разделены по организациям)
         List<Organization> organizations = parser.parse(orgJson); //парсинг разделенных огранизаций
 
@@ -36,11 +35,9 @@ public class Main {
         }
         System.out.println("Всего: " + num);
 
-
         System.out.print("Введите запрос: ");
         Scanner in = new Scanner(System.in);
         String req = in.nextLine();
-
 
         if (req.length() > 4) {
             LocalDate date = reDate(req);
@@ -59,8 +56,6 @@ public class Main {
                 }
             }
         }
-
-
     }
 
     private static String readUsingFiles(String fileName) throws IOException {
@@ -80,6 +75,5 @@ public class Main {
         return LocalDate.parse(strDate, formatter);
 
     }
-
 
 }
