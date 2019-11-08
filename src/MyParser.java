@@ -108,7 +108,6 @@ public class MyParser {
                     .findFirst();
 
             organizations.get(i).setEgrulDate(parsString(optional.get()));
-            organizations.get(i).setEgrulDate(parsString(optional.get()));
 
             optional = Arrays.asList(orgJson.get(i).split("\\n"))
                     .stream()
@@ -147,7 +146,6 @@ public class MyParser {
 
             organizations.get(i).setFioHead(parsString(optional.get()));
 
-
             optional = Arrays.asList(orgJson.get(i).split("\\n"))
                     .stream()
                     .filter(s -> s.contains("\"address\""))
@@ -184,8 +182,6 @@ public class MyParser {
 
             organizations.get(i).setWww(parsString(optional.get()));
 
-            //"is_resident"  orgJson
-
             optional = Arrays.asList(orgJson.get(i).split("\\n"))
                     .stream()
                     .filter(s -> s.contains("\"is_resident\""))
@@ -194,6 +190,7 @@ public class MyParser {
                     .findFirst();
 
             organizations.get(i).setResident(parsBoolean(optional.get()));
+
 
             List<String> listSecur = splitOrg(splitSecuriti(orgJson.get(i)));
             for(int j = 0; j < listSecur.size(); j++){
@@ -311,9 +308,6 @@ public class MyParser {
 
             }
         }
-
-
-
         return organizations;
     }
 
@@ -385,7 +379,7 @@ public class MyParser {
         boolean flag = false;
         int t=2;
         if (strf[strf.length-2] == ',') t = 3;
-        for (int i = 0; i < strf.length-t; i++) {
+        for (int i = 0; i < strf.length - t; i++) {
             if(strf[i] == ':'){
                 flag = true;
                 i = i + 3;
@@ -397,6 +391,5 @@ public class MyParser {
         }
         return newStr.toString();
     }
-
 
 }
